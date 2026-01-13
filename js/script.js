@@ -61,6 +61,28 @@ class SimpleGame {
 
     this.draw();
   }
+
+  collectSameCells(row, col, value, result) {
+    if (row < 0 || col < 0 || row >= this.rowsCount || col >= this.colsCount) {
+      return;
+    }
+
+    if (this.field[row][col] !== value) return;
+
+    if (!this.checked[row]) {
+      this.checked[row] = [];
+    }
+
+    if (this.checked[row][col]) return;
+
+    this.checked[row][col] = true;
+    result.push([row, col]);
+
+    this.collectSameCells(row - 1, col, value, result); // удаляет однотипные елементы вверх
+    this.collectSameCells(row + 1, col, value, result); // удаляет однотипные елементы вниз
+    this.collectSameCells(row, col - 1, value, result); // удаляет однотипные елементы влево
+    this.collectSameCells(row, col + 1, value, result); // удаляет однотипные елементы вправо
+  }
 }
 
 new SimpleGame(field, board);
