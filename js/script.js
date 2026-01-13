@@ -45,14 +45,14 @@ class SimpleGame {
 
   onCellClick(row, col) {
     const currentValue = this.field[row][col];
-    if (!currentValue) return;
+    if (!currentValue) return; 
 
     this.checked = [];
     const cellsToRemove = [];
 
     this.collectSameCells(row, col, currentValue, cellsToRemove);
 
-    if (cellsToRemove.length < 2) return; // если группа меньше 2-х елементов — ничего не делаем
+    if (cellsToRemove.length < 2) return;
 
     for (let i = 0; i < cellsToRemove.length; i++) {
       const [r, c] = cellsToRemove[i];
@@ -78,10 +78,10 @@ class SimpleGame {
     this.checked[row][col] = true;
     result.push([row, col]);
 
-    this.collectSameCells(row - 1, col, value, result); // удаляет однотипные елементы вверх
-    this.collectSameCells(row + 1, col, value, result); // удаляет однотипные елементы вниз
-    this.collectSameCells(row, col - 1, value, result); // удаляет однотипные елементы влево
-    this.collectSameCells(row, col + 1, value, result); // удаляет однотипные елементы вправо
+    this.collectSameCells(row - 1, col, value, result); 
+    this.collectSameCells(row + 1, col, value, result); 
+    this.collectSameCells(row, col - 1, value, result); 
+    this.collectSameCells(row, col + 1, value, result); 
   }
 }
 
